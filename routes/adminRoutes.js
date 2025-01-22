@@ -2,37 +2,50 @@ const express = require("express");
 const router = express.Router();
 const Room = require("../models/Room"); // Import Room model
 const Booking = require("../models/Booking"); // Import Booking model
+const adminController = require("../controllers/adminController");
+// Dashboard Route
+router.get("/dashboard", adminController.getDashboard);
 
 // Admin Dashboard Route
-router.get("/dashboard", async (req, res) => {
+exports.getDashboard = async (req, res) => {
   try {
     // Fetch total number of rooms
     const totalRooms = await Room.countDocuments();
 
-    // Fetch number of available rooms
+    // Fetch available rooms
     const availableRooms = await Room.countDocuments({ isAvailable: true });
 
-    // Fetch number of bookings today
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0); // Start of the day
-    const todayEnd = new Date();
-    todayEnd.setHours(23, 59, 59, 999); // End of the day
+    // Fetch today's bookings
+    const today = new Date();
+    const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+    const endOfDay = new Date(today.setHours(23, 59, 59, 999));
     const bookingsToday = await Booking.countDocuments({
-      checkIn: { $gte: todayStart, $lte: todayEnd },
+      checkIn: { $gte: startOfDay, $lte: endOfDay },
     });
 
-    // Render the dashboard view with fetched data
+    // Calculate total revenue
+    const revenue = await Booking.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalRevenue: { $sum: "$price" },
+        },
+      },
+    ]);
+    const totalRevenue = revenue[0]?.totalRevenue || 0;
+
+    // Render the dashboard template with the data
     res.render("dashboard", {
       totalRooms,
       availableRooms,
       bookingsToday,
+      totalRevenue,
     });
   } catch (err) {
-    console.error("Error fetching dashboard data:", err);
-    res.status(500).send("Error fetching dashboard data");
+    console.error("Dashboard Error:", err);
+    res.status(500).send("Error loading dashboard");
   }
-});
-
+};
 // Additional Admin Routes can go here
 router.get("/manage-customers", (req, res) => {
   res.send("Customer Management Page");
