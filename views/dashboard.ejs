@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <h1>Admin Dashboard</h1>
+    </header>
+
+    <!-- Overview Section -->
+    <div class="dashboard-container">
+      <h2>Overview</h2>
+      <div class="dashboard-metrics">
+        <!-- Metric Card: Total Rooms -->
+        <div class="metric-card">
+          <h3>Total Rooms</h3>
+          <p class="metric-value"><%= totalRooms %></p>
+          <p class="metric-description">Total number of rooms in the hotel</p>
+        </div>
+
+        <!-- Metric Card: Available Rooms -->
+        <div class="metric-card">
+          <h3>Available Rooms</h3>
+          <p class="metric-value"><%= availableRooms %></p>
+          <p class="metric-description">
+            Rooms currently available for booking
+          </p>
+        </div>
+
+        <!-- Metric Card: Bookings Today -->
+        <div class="metric-card">
+          <h3>Bookings Today</h3>
+          <p class="metric-value"><%= bookingsToday %></p>
+          <p class="metric-description">Bookings made today</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Sections -->
+    <div class="dashboard-container">
+      <h2>Manage Sections</h2>
+      <div class="manage-links">
+        <a href="/customers" class="manage-link">Manage Customers</a>
+        <a href="/rooms" class="manage-link">Manage Rooms</a>
+        <a href="/bookings" class="manage-link">Manage Bookings</a>
+      </div>
+    </div>
+
+    <footer class="dashboard-footer">
+      <p>Powered by Your Hotel Management System</p>
+    </footer>
+  </body>
+</html>

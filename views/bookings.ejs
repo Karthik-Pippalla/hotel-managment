@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Manage Bookings</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Manage Bookings</h1>
+
+    <!-- Add Booking Form -->
+    <form action="/bookings/add" method="POST">
+      <select name="customerId" required>
+        <option value="">Select Customer</option>
+        <% customers.forEach(customer => { %>
+        <option value="<%= customer._id %>"><%= customer.name %></option>
+        <% }) %>
+      </select>
+      <select name="roomId" required>
+        <option value="">Select Room</option>
+        <% rooms.forEach(room => { %>
+          <option value="<%= room._id %>"><%= room.roomNumber %></option>
+        <% }) %>
+      </select>
+      
+      </select>
+      <input type="datetime-local" name="checkIn" required />
+      <input type="datetime-local" name="checkOut" required />
+      <input type="number" name="price" placeholder="Price" required />
+      <button type="submit">Add Booking</button>
+    </form>
+
+    <!-- Booking List -->
+    <h2>Bookings List</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Room</th>
+          <th>Check-In</th>
+          <th>Check-Out</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(booking => { %>
+        <tr>
+          <td><%= booking.customerId.name %></td>
+          <td><%= booking.roomId.roomNumber %></td>
+          <td>
+            <%= booking.checkIn.toISOString().slice(0, 16).replace('T', ' ') %>
+          </td>
+          <td>
+            <%= booking.checkOut.toISOString().slice(0, 16).replace('T', ' ') %>
+          </td>
+          <td>$<%= booking.price %></td>
+          <td>
+            <form
+              action="/bookings/delete/<%= booking._id %>"
+              method="POST"
+              style="display: inline"
+            >
+              <button type="submit">Cancel</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

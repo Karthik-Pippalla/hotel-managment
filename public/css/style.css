@@ -1,0 +1,182 @@
+/* General Page Styling */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  color: #343a40;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="datetime-local"],
+form select,
+form button {
+  display: inline-block;
+  width: calc(100% - 20px);
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form input[type="submit"],
+form button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover,
+form button:hover {
+  background-color: #0056b3;
+}
+
+form input[type="submit"],
+form button {
+  width: auto; /* Automatically size the button based on its content */
+  padding: 8px 16px; /* Smaller padding for a compact look */
+  margin-top: 10px; /* Add spacing between form and button */
+  font-size: 14px; /* Slightly smaller font size */
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+table tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Buttons in the Table */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button.cancel {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.cancel:hover {
+  background-color: #c82333;
+}
+
+/* Cards for Metrics (Optional) */
+.card {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.card .value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.card:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="datetime-local"],
+  form select,
+  form button {
+    width: 100%;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button.cancel {
+    font-size: 12px;
+    padding: 5px;
+  }
+}

@@ -1,0 +1,124 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+header.dashboard-header {
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.section-title {
+  text-align: center;
+  color: #343a40;
+  margin: 20px 0;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Metrics Section */
+.dashboard-metrics {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.metric-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.metric-card h3 {
+  font-size: 18px;
+  color: #555;
+}
+
+.metric-value {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #007bff;
+}
+
+.metric-description {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Manage Links */
+.manage-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.manage-link {
+  display: block;
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.manage-link:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer.dashboard-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-metrics {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .metric-card {
+    width: 90%;
+  }
+
+  .manage-link {
+    width: 90%;
+    font-size: 14px;
+  }
+}

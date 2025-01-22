@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Manage Customers</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Manage Customers</h1>
+
+    <!-- Add Customer Form -->
+    <form action="/customers/add" method="POST">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="text" name="phone" placeholder="Phone" required />
+      <input type="text" name="address" placeholder="Address" required />
+      <input type="text" name="idNumber" placeholder="ID Number" required />
+      <button type="submit">Add Customer</button>
+    </form>
+
+    <!-- Customer List -->
+    <h2>Customer List</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>ID Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.forEach(customer => { %>
+        <tr>
+          <td><%= customer.name %></td>
+          <td><%= customer.phone %></td>
+          <td><%= customer.address %></td>
+          <td><%= customer.idNumber %></td>
+          <td>
+            <a href="/customers/edit/<%= customer._id %>">Edit</a>
+            <form
+              action="/customers/delete/<%= customer._id %>"
+              method="POST"
+              style="display: inline"
+            >
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

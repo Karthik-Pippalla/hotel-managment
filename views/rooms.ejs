@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Rooms</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Manage Rooms</h1>
+
+    <!-- Add Room Form -->
+    <form action="/rooms/add" method="POST">
+      <label for="roomNumber">Room Number:</label>
+      <input
+        type="text"
+        id="roomNumber"
+        name="roomNumber"
+        placeholder="Room Number"
+        required
+      />
+
+      <label for="price">Price:</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        placeholder="Price"
+        required
+      />
+
+      <fieldset>
+        <legend>Tags:</legend>
+        <label>
+          <input type="checkbox" name="tags" value="Smoking" /> Smoking
+        </label>
+        <label>
+          <input type="checkbox" name="tags" value="Non-smoking" /> Non-smoking
+        </label>
+        <label> <input type="checkbox" name="tags" value="AC" /> AC </label>
+        <label>
+          <input type="checkbox" name="tags" value="Non-AC" /> Non-AC
+        </label>
+        <label>
+          <input type="checkbox" name="tags" value="King Bed" /> King Bed
+        </label>
+        <label>
+          <input type="checkbox" name="tags" value="Queen Bed" /> Queen Bed
+        </label>
+      </fieldset>
+
+      <input type="submit" value="Add Room" />
+    </form>
+
+    <!-- Rooms List -->
+    <h2>Rooms List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Room Number</th>
+          <th>Tags</th>
+          <th>Price</th>
+          <th>Available</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rooms.forEach(room => { %>
+        <tr>
+          <td><%= room.roomNumber %></td>
+          <td><%= room.tags.join(', ') %></td>
+          <td>$<%= room.price %></td>
+          <td><%= room.isAvailable ? 'Yes' : 'No' %></td>
+          <td>
+            <a href="/rooms/edit/<%= room._id %>">Edit</a>
+            <form
+              action="/rooms/delete/<%= room._id %>"
+              method="POST"
+              style="display: inline"
+            >
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
