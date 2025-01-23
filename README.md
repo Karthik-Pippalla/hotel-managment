@@ -71,7 +71,7 @@ Ensure you have the following installed:
 ## 🖥️ Screenshots
 
 ### 📊 Dashboard
-![Dashboard](![image](https://github.com/user-attachments/assets/07963463-b68d-40c7-8d43-21e8da6604b0)
+![Dashboard]([image](https://github.com/user-attachments/assets/07963463-b68d-40c7-8d43-21e8da6604b0)
 )
 
 ### 🛏️ Manage Rooms
