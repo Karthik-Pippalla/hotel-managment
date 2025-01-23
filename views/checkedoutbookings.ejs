@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Checked-Out Bookings</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header') %>
+      <h1>Checked-Out Bookings</h1>
+
+      <!-- Checked-Out Bookings Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Room</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% checkedOutBookings.forEach((booking) => { %> <% if
+          (booking.customerId && booking.roomId) { %>
+          <tr>
+            <td><%= booking.customerId.name %></td>
+            <td>
+              Room <%= booking.roomId.roomNumber %> - <%=
+              booking.roomId.tags.join(", ") %>
+            </td>
+            <td>
+              <%= booking.checkIn.toISOString().slice(0, 16).replace('T', ' ')
+              %>
+            </td>
+            <td>
+              <%= booking.checkOut.toISOString().slice(0, 16).replace('T', ' ')
+              %>
+            </td>
+            <td>$<%= booking.price %></td>
+          </tr>
+          <% } else { %>
+          <tr>
+            <td colspan="5" class="error">
+              Invalid Booking: Missing Customer or Room Information
+            </td>
+          </tr>
+          <% } %> <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

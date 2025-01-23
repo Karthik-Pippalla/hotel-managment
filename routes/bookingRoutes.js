@@ -9,6 +9,11 @@ router.get("/", bookingController.getBookings);
 router.post("/add", bookingController.addBooking);
 
 // Delete a booking
-router.post("/delete/:id", bookingController.deleteBooking);
+router.post("/delete/:id", bookingController.cancelBooking);
+
+// Checkout a booking
+router.post("/checkout/:id", bookingController.checkoutBooking);
+// Get all checked-out bookings
+router.get("/checked-out", bookingController.getCheckedOutBookings);
 
 module.exports = router;

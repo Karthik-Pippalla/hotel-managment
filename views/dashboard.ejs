@@ -11,25 +11,21 @@
       <h1>CALAMITY JANE DASHBOARD</h1>
     </header>
     <!-- Manage Sections -->
-    <div class="dashboard-container">
-      <h2 class="section-title">Manage Sections</h2>
-      <div class="manage-links">
-        <a href="/customers" class="manage-link">Manage Customers</a>
-        <a href="/rooms" class="manage-link">Manage Rooms</a>
-        <a href="/bookings" class="manage-link">Manage Bookings</a>
-      </div>
-    </div>
+    <%- include('partials/header') %>
+
     <!-- Overview Section -->
     <div class="dashboard-container">
       <h2 class="section-title">Overview</h2>
-      <div class="dashboard-metrics">
-        <!-- Metric: Total Rooms -->
-        <div class="metric-card">
-          <h3>Revenue</h3>
-          <p class="metric-value">$<%= totalRevenue.toFixed(2) %></p>
-          <p class="metric-description">Total revenue from bookings</p>
-        </div>
 
+      <!-- Revenue (Last 24 Hours) -->
+      <div class="metric-card highlight">
+        <h3>Revenue (Last 24 Hours)</h3>
+        <p class="metric-value">$<%= totalRevenue24Hours.toFixed(2) %></p>
+        <p class="metric-description">Total revenue from the last 24 hours</p>
+      </div>
+
+      <!-- Other Metrics -->
+      <div class="dashboard-metrics">
         <!-- Metric: Available Rooms -->
         <div class="metric-card">
           <h3>Available Rooms</h3>
@@ -45,12 +41,30 @@
           <p class="metric-value"><%= bookingsToday %></p>
           <p class="metric-description">Bookings made today</p>
         </div>
+      </div>
 
-        <!-- Metric: Revenue -->
+      <!-- Revenue Breakdown Section -->
+      <h2 class="section-title">Revenue Breakdown</h2>
+      <div class="dashboard-metrics">
+        <!-- Metric: Last Week -->
         <div class="metric-card">
-          <h3>Revenue</h3>
-          <p class="metric-value">$<%= totalRevenue.toFixed(2) %></p>
-          <p class="metric-description">Total revenue from bookings</p>
+          <h3>Revenue (Last Week)</h3>
+          <p class="metric-value">$<%= totalRevenue1Week.toFixed(2) %></p>
+          <p class="metric-description">Total revenue from the last week</p>
+        </div>
+
+        <!-- Metric: Last Month -->
+        <div class="metric-card">
+          <h3>Revenue (Last Month)</h3>
+          <p class="metric-value">$<%= totalRevenue1Month.toFixed(2) %></p>
+          <p class="metric-description">Total revenue from the last month</p>
+        </div>
+
+        <!-- Metric: Last Year -->
+        <div class="metric-card">
+          <h3>Revenue (Last Year)</h3>
+          <p class="metric-value">$<%= totalRevenue1Year.toFixed(2) %></p>
+          <p class="metric-description">Total revenue from the last year</p>
         </div>
       </div>
     </div>

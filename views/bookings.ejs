@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <%- include('partials/header') %>
     <div class="container">
       <h1>Manage Bookings</h1>
 
@@ -103,12 +104,24 @@
             </td>
             <td>$<%= booking.price %></td>
             <td>
+              <!-- Cancel Button -->
               <form
                 action="/bookings/delete/<%= booking._id %>"
                 method="POST"
                 style="display: inline"
               >
                 <button class="cancel btn-danger" type="submit">Cancel</button>
+              </form>
+
+              <!-- Checkout Button -->
+              <form
+                action="/bookings/checkout/<%= booking._id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button class="checkout btn-success" type="submit">
+                  Checkout
+                </button>
               </form>
             </td>
           </tr>

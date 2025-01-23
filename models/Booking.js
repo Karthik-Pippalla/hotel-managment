@@ -10,7 +10,7 @@ const BookingSchema = new mongoose.Schema({
   checkIn: { type: Date, required: true },
   checkOut: { type: Date, required: true },
   price: { type: Number, required: true },
-  paymentStatus: { type: String, default: "Pending" },
+  isCheckedOut: { type: Boolean, default: false }, // New field
 });
 
 module.exports = mongoose.model("Booking", BookingSchema);
