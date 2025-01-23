@@ -57,12 +57,23 @@ exports.updateRoom = async (req, res) => {
   }
 };
 
-// Delete room
 exports.deleteRoom = async (req, res) => {
   try {
-    await Room.findByIdAndDelete(req.params.id);
-    res.redirect("/rooms");
+    const roomId = req.params.id;
+
+    // Check if the room has active bookings
+    const activeBookings = await Booking.find({ roomId });
+    if (activeBookings.length > 0) {
+      return res.status(400).json({
+        error: "Cannot delete room with active bookings.",
+      });
+    }
+
+    // Delete the room
+    await Room.findByIdAndDelete(roomId);
+    res.json({ message: "Room deleted successfully." });
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Error deleting room:", err.message);
+    res.status(500).json({ error: "Error deleting room." });
   }
 };

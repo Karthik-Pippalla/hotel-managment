@@ -8,9 +8,17 @@
   </head>
   <body>
     <header class="dashboard-header">
-      <h1>Admin Travelodge Dashboard</h1>
+      <h1>CALAMITY JANE DASHBOARD</h1>
     </header>
-
+    <!-- Manage Sections -->
+    <div class="dashboard-container">
+      <h2 class="section-title">Manage Sections</h2>
+      <div class="manage-links">
+        <a href="/customers" class="manage-link">Manage Customers</a>
+        <a href="/rooms" class="manage-link">Manage Rooms</a>
+        <a href="/bookings" class="manage-link">Manage Bookings</a>
+      </div>
+    </div>
     <!-- Overview Section -->
     <div class="dashboard-container">
       <h2 class="section-title">Overview</h2>
@@ -44,16 +52,6 @@
           <p class="metric-value">$<%= totalRevenue.toFixed(2) %></p>
           <p class="metric-description">Total revenue from bookings</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Manage Sections -->
-    <div class="dashboard-container">
-      <h2 class="section-title">Manage Sections</h2>
-      <div class="manage-links">
-        <a href="/customers" class="manage-link">Manage Customers</a>
-        <a href="/rooms" class="manage-link">Manage Rooms</a>
-        <a href="/bookings" class="manage-link">Manage Bookings</a>
       </div>
     </div>
 

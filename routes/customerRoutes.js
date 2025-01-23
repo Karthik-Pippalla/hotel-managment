@@ -16,3 +16,8 @@ router.post("/edit/:id", customerController.updateCustomer);
 router.post("/delete/:id", customerController.deleteCustomer);
 
 module.exports = router;
+
+// Route for searching customers
+router.get("/search", customerController.searchCustomers);
+
+module.exports = router;

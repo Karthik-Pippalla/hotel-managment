@@ -5,67 +5,125 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <h1>Manage Bookings</h1>
+    <div class="container">
+      <h1>Manage Bookings</h1>
 
-    <!-- Add Booking Form -->
-    <form action="/bookings/add" method="POST">
-      <select name="customerId" required>
-        <option value="">Select Customer</option>
-        <% customers.forEach(customer => { %>
-        <option value="<%= customer._id %>"><%= customer.name %></option>
-        <% }) %>
-      </select>
-      <select name="roomId" required>
-        <option value="">Select Room</option>
-        <% rooms.forEach(room => { %>
-          <option value="<%= room._id %>"><%= room.roomNumber %></option>
-        <% }) %>
-      </select>
-      
-      </select>
-      <input type="datetime-local" name="checkIn" required />
-      <input type="datetime-local" name="checkOut" required />
-      <input type="number" name="price" placeholder="Price" required />
-      <button type="submit">Add Booking</button>
-    </form>
+      <!-- Customer Search Form -->
+      <form id="customer-search-form" class="form-group">
+        <input
+          type="text"
+          id="customer-search"
+          placeholder="Search Customer..."
+          class="search-input"
+        />
+        <button type="button" id="search-btn" class="btn">Search</button>
+      </form>
 
-    <!-- Booking List -->
-    <h2>Bookings List</h2>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Customer</th>
-          <th>Room</th>
-          <th>Check-In</th>
-          <th>Check-Out</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% bookings.forEach(booking => { %>
-        <tr>
-          <td><%= booking.customerId.name %></td>
-          <td><%= booking.roomId.roomNumber %></td>
-          <td>
-            <%= booking.checkIn.toISOString().slice(0, 16).replace('T', ' ') %>
-          </td>
-          <td>
-            <%= booking.checkOut.toISOString().slice(0, 16).replace('T', ' ') %>
-          </td>
-          <td>$<%= booking.price %></td>
-          <td>
-            <form
-              action="/bookings/delete/<%= booking._id %>"
-              method="POST"
-              style="display: inline"
-            >
-              <button type="submit">Cancel</button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
+      <!-- Add Booking Form -->
+      <form action="/bookings/add" method="POST" class="form">
+        <!-- Customer Dropdown -->
+        <div class="form-group">
+          <label for="customerId">Select Customer:</label>
+          <select id="customer-dropdown" name="customerId" required>
+            <option value="">Select Customer</option>
+            <!-- Options will be dynamically populated -->
+          </select>
+        </div>
+
+        <!-- Room Selection -->
+        <div class="form-group">
+          <label for="roomId">Room:</label>
+          <select name="roomId" id="roomId" required>
+            <option value="">Select Room</option>
+            <% rooms.forEach((room) => { %>
+            <option value="<%= room._id %>">
+              Room <%= room.roomNumber %> - <%= room.tags.join(", ") %> ($<%=
+              room.price %>)
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <!-- Check-In and Check-Out -->
+        <div class="form-group">
+          <label for="checkIn">Check-In:</label>
+          <input type="datetime-local" id="checkIn" name="checkIn" required />
+        </div>
+
+        <div class="form-group">
+          <label for="checkOut">Check-Out:</label>
+          <input type="datetime-local" id="checkOut" name="checkOut" required />
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            placeholder="Price"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Add Booking</button>
+      </form>
+
+      <!-- Booking List -->
+      <h2>Bookings List</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Room</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bookings.forEach((booking) => { %> <% if (booking.customerId &&
+          booking.roomId) { %>
+          <tr>
+            <td><%= booking.customerId.name %></td>
+            <td>
+              Room <%= booking.roomId.roomNumber %> - <%=
+              booking.roomId.tags.join(", ") %>
+            </td>
+            <td>
+              <%= booking.checkIn.toISOString().slice(0, 16).replace('T', ' ')
+              %>
+            </td>
+            <td>
+              <%= booking.checkOut.toISOString().slice(0, 16).replace('T', ' ')
+              %>
+            </td>
+            <td>$<%= booking.price %></td>
+            <td>
+              <form
+                action="/bookings/delete/<%= booking._id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button class="cancel btn-danger" type="submit">Cancel</button>
+              </form>
+            </td>
+          </tr>
+          <% } else { %>
+          <tr>
+            <td colspan="6" class="error">
+              Invalid Booking: Missing Customer or Room Information
+            </td>
+          </tr>
+          <% } %> <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Include JavaScript -->
+    <script src="/js/searchCustomer.js"></script>
   </body>
 </html>

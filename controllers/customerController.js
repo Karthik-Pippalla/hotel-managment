@@ -45,11 +45,43 @@ exports.updateCustomer = async (req, res) => {
 };
 
 // Delete customer
+const Booking = require("../models/Booking");
+
 exports.deleteCustomer = async (req, res) => {
   try {
-    await Customer.findByIdAndDelete(req.params.id);
-    res.redirect("/customers");
+    const customerId = req.params.id;
+
+    // Check if the customer has active bookings
+    const activeBookings = await Booking.find({ customerId });
+    if (activeBookings.length > 0) {
+      return res.status(400).json({
+        error: "Cannot delete customer with active bookings.",
+      });
+    }
+
+    // Delete the customer
+    await Customer.findByIdAndDelete(customerId);
+    res.json({ message: "Customer deleted successfully." });
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Error deleting customer:", err.message);
+    res.status(500).json({ error: "Error deleting customer." });
+  }
+};
+
+// Search Customers Controller
+exports.searchCustomers = async (req, res) => {
+  try {
+    const query = req.query.q; // Get the search query from the request
+    const customers = await Customer.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } }, // Case-insensitive name search
+        { phone: { $regex: query, $options: "i" } }, // Case-insensitive phone search
+      ],
+    });
+
+    res.json(customers); // Respond with the matching customers
+  } catch (err) {
+    console.error("Error searching customers:", err.message); // Log the error
+    res.status(500).json({ error: "Error searching customers." });
   }
 };
