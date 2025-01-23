@@ -71,16 +71,16 @@ Ensure you have the following installed:
 ## 🖥️ Screenshots
 
 ### 📊 Dashboard
-![Dashboard]
+
 ![Screenshot 2025-01-23 040946](https://github.com/user-attachments/assets/924d72bf-8ea8-4248-b611-2ac4e7ca0579)
 
 ### 🛏️ Manage Rooms
-![Manage Rooms](![image](https://github.com/user-attachments/assets/59b66f4d-5d93-42bb-b72d-b53aea23d29d)
-)
+![Screenshot 2025-01-23 042123](https://github.com/user-attachments/assets/0a805015-afff-484d-b06b-fb9a0fe2a841)
+
 
 ### 📋 Manage Bookings
-![Manage Bookings](![image](https://github.com/user-attachments/assets/3ad75c68-d4b9-4428-8942-eaf35e57e0cf)
-)
+
+![Screenshot 2025-01-23 042240](https://github.com/user-attachments/assets/4db1da95-d80a-467f-a3a7-76b5ff48a417)
 
 ---
 
