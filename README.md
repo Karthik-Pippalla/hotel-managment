@@ -83,8 +83,10 @@ Ensure you have the following installed:
 
 ![Screenshot 2025-01-23 042309](https://github.com/user-attachments/assets/45a765c8-2dc9-43c3-82af-bd28787dc878)
 
----
 
+![Screenshot 2025-01-23 060740](https://github.com/user-attachments/assets/8c6511bb-836b-4a1f-90c2-76cfae85cbf5)
+
+---
 ## 📂 Project Structure
 
 ```
