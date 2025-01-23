@@ -66,20 +66,21 @@ Ensure you have the following installed:
    npm start
    ```
 
-6. Visit the app at: [http://localhost:5000](http://localhost:5000)
 
----
 
 ## 🖥️ Screenshots
 
 ### 📊 Dashboard
-![Dashboard](link-to-dashboard-screenshot)
+![Dashboard](![image](https://github.com/user-attachments/assets/07963463-b68d-40c7-8d43-21e8da6604b0)
+)
 
 ### 🛏️ Manage Rooms
-![Manage Rooms](link-to-rooms-screenshot)
+![Manage Rooms](![image](https://github.com/user-attachments/assets/59b66f4d-5d93-42bb-b72d-b53aea23d29d)
+)
 
 ### 📋 Manage Bookings
-![Manage Bookings](link-to-bookings-screenshot)
+![Manage Bookings](![image](https://github.com/user-attachments/assets/3ad75c68-d4b9-4428-8942-eaf35e57e0cf)
+)
 
 ---
 
