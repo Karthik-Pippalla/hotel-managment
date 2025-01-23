@@ -72,15 +72,16 @@ Ensure you have the following installed:
 
 ### 📊 Dashboard
 
-![Screenshot 2025-01-23 040946](https://github.com/user-attachments/assets/924d72bf-8ea8-4248-b611-2ac4e7ca0579)
-
-### 🛏️ Manage Rooms
 ![Screenshot 2025-01-23 042123](https://github.com/user-attachments/assets/0a805015-afff-484d-b06b-fb9a0fe2a841)
 
+### 🛏️ Manage Rooms
+
+
+![Screenshot 2025-01-23 042240](https://github.com/user-attachments/assets/4db1da95-d80a-467f-a3a7-76b5ff48a417)
 
 ### 📋 Manage Bookings
 
-![Screenshot 2025-01-23 042240](https://github.com/user-attachments/assets/4db1da95-d80a-467f-a3a7-76b5ff48a417)
+![Screenshot 2025-01-23 042309](https://github.com/user-attachments/assets/45a765c8-2dc9-43c3-82af-bd28787dc878)
 
 ---
 
