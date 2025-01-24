@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Customer</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <div class="container">
+      <h1>Edit Customer</h1>
+
+      <form action="/customers/edit/<%= customer._id %>" method="POST" class="form">
+        <input type="text" name="name" value="<%= customer.name %>" required />
+        <input type="text" name="phone" value="<%= customer.phone %>" required />
+        <input
+          type="text"
+          name="address"
+          value="<%= customer.address %>"
+          required
+        />
+        <select name="idType" required>
+          <option value="" disabled>Select ID Type</option>
+          <option value="Passport" <%= customer.idType === "Passport" ? "selected" : "" %>>
+            Passport
+          </option>
+          <option value="Driver's License" <%= customer.idType === "Driver's License" ? "selected" : "" %>>
+            Driver's License
+          </option>
+          <option value="National ID" <%= customer.idType === "National ID" ? "selected" : "" %>>
+            National ID
+          </option>
+        </select>
+        <input
+          type="text"
+          name="idNumber"
+          value="<%= customer.idNumber %>"
+          required
+        />
+      
+        <fieldset>
+          <legend>Preferences:</legend>
+          <label>
+            <input
+              type="radio"
+              name="preferences[roomType]"
+              value="AC"
+              <%= customer.preferences.roomType === "AC" ? "checked" : "" %>
+            />
+            AC
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="preferences[roomType]"
+              value="Non-AC"
+              <%= customer.preferences.roomType === "Non-AC" ? "checked" : "" %>
+            />
+            Non-AC
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              name="preferences[bedType]"
+              value="King Bed"
+              <%= customer.preferences.bedType === "King Bed" ? "checked" : "" %>
+            />
+            King Bed
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="preferences[bedType]"
+              value="Queen Bed"
+              <%= customer.preferences.bedType === "Queen Bed" ? "checked" : "" %>
+            />
+            Queen Bed
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="preferences[bedType]"
+              value="Double Bed"
+              <%= customer.preferences.bedType === "Double Bed" ? "checked" : "" %>
+            />
+            Double Bed
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              name="preferences[smoking]"
+              value="Smoking"
+              <%= customer.preferences.smoking === "Smoking" ? "checked" : "" %>
+            />
+            Smoking
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="preferences[smoking]"
+              value="Non-smoking"
+              <%= customer.preferences.smoking === "Non-smoking" ? "checked" : "" %>
+            />
+            Non-smoking
+          </label>
+        </fieldset>
+        <button type="submit" class="btn">Update Customer</button>
+      </form>
+      
+    </div>
+  </body>
+</html>

@@ -6,10 +6,28 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#03dac5, #936f03), no-repeat center center fixed;
-  background-size: cover;
+
+  /* Shiny gradient effect with soft transitions */
+  background: linear-gradient(135deg, #102a42, #142e40, #053b56, #0a1e30);
+
+  background-size: 300% 300%;
+  animation: shineEffect 6s infinite;
   color: #fff; /* Adjust font color to contrast the dark background */
 }
+
+/* Gradient shimmer animation */
+@keyframes shineEffect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .dashboard-footer {
   background-color: #212529; /* Matches the dark theme of your dashboard */
   color: #f8f9fa; /* Light text for contrast */
@@ -183,6 +201,33 @@ button.cancel {
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 button.cancel:hover {

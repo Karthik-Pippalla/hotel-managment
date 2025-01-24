@@ -7,85 +7,152 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <!-- Include header -->
     <%- include('partials/header') %>
-    <h1>Manage Rooms</h1>
 
-    <!-- Add Room Form -->
-    <form action="/rooms/add" method="POST">
-      <label for="roomNumber">Room Number:</label>
-      <input
-        type="text"
-        id="roomNumber"
-        name="roomNumber"
-        placeholder="Room Number"
-        required
-      />
+    <div class="container">
+      <h1 class="page-title">Manage Rooms</h1>
 
-      <label for="price">Price:</label>
-      <input
-        type="number"
-        id="price"
-        name="price"
-        placeholder="Price"
-        required
-      />
+      <!-- Add Room Form -->
+      <div class="form-container">
+        <h2 class="form-title">Add Room</h2>
+        <form action="/rooms/add" method="POST" class="form">
+          <div class="form-group">
+            <label for="roomNumber">Room Number:</label>
+            <input
+              type="text"
+              id="roomNumber"
+              name="roomNumber"
+              placeholder="Enter Room Number"
+              required
+              class="input-field"
+            />
+          </div>
 
-      <fieldset>
-        <legend>Tags:</legend>
-        <label>
-          <input type="checkbox" name="tags" value="Smoking" /> Smoking
-        </label>
-        <label>
-          <input type="checkbox" name="tags" value="Non-smoking" /> Non-smoking
-        </label>
-        <label> <input type="checkbox" name="tags" value="AC" /> AC </label>
-        <label>
-          <input type="checkbox" name="tags" value="Non-AC" /> Non-AC
-        </label>
-        <label>
-          <input type="checkbox" name="tags" value="King Bed" /> King Bed
-        </label>
-        <label>
-          <input type="checkbox" name="tags" value="Queen Bed" /> Queen Bed
-        </label>
-      </fieldset>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Enter Price"
+              required
+              class="input-field"
+            />
+          </div>
 
-      <input type="submit" value="Add Room" />
-    </form>
+          <fieldset>
+            <legend>Tags:</legend>
 
-    <!-- Rooms List -->
-    <h2>Rooms List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Room Number</th>
-          <th>Tags</th>
-          <th>Price</th>
-          <th>Available</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% rooms.forEach(room => { %>
-        <tr>
-          <td><%= room.roomNumber %></td>
-          <td><%= room.tags.join(', ') %></td>
-          <td>$<%= room.price %></td>
-          <td><%= room.isAvailable ? 'Yes' : 'No' %></td>
-          <td>
-            <a href="/rooms/edit/<%= room._id %>">Edit</a>
-            <form
-              action="/rooms/delete/<%= room._id %>"
-              method="POST"
-              style="display: inline"
-            >
-              <button type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
+            <!-- Smoking/Non-Smoking Options -->
+            <div class="form-group">
+              <label>
+                <input type="radio" name="smoking" value="Smoking" required />
+                Smoking
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="smoking"
+                  value="Non-smoking"
+                  required
+                />
+                Non-smoking
+              </label>
+            </div>
+
+            <!-- AC/Non-AC Options -->
+            <div class="form-group">
+              <label>
+                <input type="radio" name="ac" value="AC" required />
+                AC
+              </label>
+              <label>
+                <input type="radio" name="ac" value="Non-AC" required />
+                Non-AC
+              </label>
+            </div>
+
+            <!-- Bed Type Options -->
+            <div class="form-group">
+              <label>
+                <input type="radio" name="bed" value="King Bed" required />
+                King Bed
+              </label>
+              <label>
+                <input type="radio" name="bed" value="Queen Bed" required />
+                Queen Bed
+              </label>
+              <label>
+                <input type="radio" name="bed" value="Double Bed" required />
+                Double Bed
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary action-button">
+              Add Room
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Rooms List -->
+      <div class="room-list-container">
+        <h2 class="section-title">Rooms List</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Room Number</th>
+              <th>Tags</th>
+              <th>Price</th>
+              <th>Available</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (rooms && rooms.length > 0) { %> <% rooms.forEach(room => { %>
+            <tr>
+              <td><%= room.roomNumber %></td>
+              <td>
+                <strong>Smoking:</strong> <%= room.smoking || 'Not specified'
+                %>, <strong>AC:</strong> <%= room.ac || 'Not specified' %>,
+                <strong>Bed:</strong> <%= room.bed || 'Not specified' %>
+              </td>
+              <td>$<%= room.price %></td>
+              <td><%= room.isAvailable ? 'Yes' : 'No' %></td>
+              <td>
+                <a
+                  href="/rooms/edit/<%= room._id %>"
+                  class="btn btn-secondary action-button"
+                >
+                  Edit
+                </a>
+                <form
+                  action="/rooms/delete/<%= room._id %>"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger action-button">
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% }) %> <% } else { %>
+            <tr>
+              <td colspan="5" class="no-data">
+                No rooms available. Add a room to view them here.
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Include footer -->
     <%- include('partials/footer') %>
   </body>
 </html>

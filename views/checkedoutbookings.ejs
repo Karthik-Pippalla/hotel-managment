@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checked-Out Bookings</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <!-- Include header -->
+    <%- include('partials/header') %>
+
     <div class="container">
-      <%- include('partials/header') %>
-      <h1>Checked-Out Bookings</h1>
+      <h1 class="page-title">Checked-Out Bookings</h1>
 
       <!-- Checked-Out Bookings Table -->
       <table class="table">
@@ -21,34 +25,46 @@
           </tr>
         </thead>
         <tbody>
-          <% checkedOutBookings.forEach((booking) => { %> <% if
-          (booking.customerId && booking.roomId) { %>
+          <% if (checkedOutBookings && checkedOutBookings.length > 0) { %> <%
+          checkedOutBookings.forEach((booking) => { %>
           <tr>
-            <td><%= booking.customerId.name %></td>
             <td>
-              Room <%= booking.roomId.roomNumber %> - <%=
-              booking.roomId.tags.join(", ") %>
+              <%= booking.customerId && booking.customerId.name ?
+              booking.customerId.name : "Unknown Customer" %>
+            </td>
+
+            <!-- Check if roomId and tags exist -->
+            <td>
+              <% if (booking.roomId) { %> Room <%= booking.roomId.roomNumber ||
+              "Unknown Room" %> - <% if (booking.roomId.tags) { %> <%=
+              Object.entries(booking.roomId.tags) .map(([key, value]) =>
+              `${key}: ${value}`) .join(", ") %> <% } else { %> No tags
+              available <% } %> <% } else { %> Unknown Room <% } %>
+            </td>
+
+            <!-- Check-In and Check-Out -->
+            <td>
+              <%= booking.checkIn ? booking.checkIn.toISOString().slice(0,
+              16).replace("T", " ") : "N/A" %>
             </td>
             <td>
-              <%= booking.checkIn.toISOString().slice(0, 16).replace('T', ' ')
-              %>
+              <%= booking.checkOut ? booking.checkOut.toISOString().slice(0,
+              16).replace("T", " ") : "N/A" %>
             </td>
-            <td>
-              <%= booking.checkOut.toISOString().slice(0, 16).replace('T', ' ')
-              %>
-            </td>
-            <td>$<%= booking.price %></td>
+
+            <!-- Price -->
+            <td>$<%= booking.price || 0 %></td>
           </tr>
-          <% } else { %>
+          <% }); %> <% } else { %>
           <tr>
-            <td colspan="5" class="error">
-              Invalid Booking: Missing Customer or Room Information
-            </td>
+            <td colspan="5" class="error">No checked-out bookings found.</td>
           </tr>
-          <% } %> <% }) %>
+          <% } %>
         </tbody>
       </table>
     </div>
+
+    <!-- Include footer -->
     <%- include('partials/footer') %>
   </body>
 </html>

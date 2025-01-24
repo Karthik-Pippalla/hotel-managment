@@ -1,4 +1,5 @@
 const Customer = require("../models/Customer");
+const Booking = require("../models/Booking");
 
 // Get all customers
 exports.getCustomers = async (req, res) => {
@@ -16,11 +17,27 @@ exports.getCustomers = async (req, res) => {
 // Add a new customer
 exports.addCustomer = async (req, res) => {
   try {
-    const customer = new Customer(req.body);
+    const { name, phone, address, idType, idNumber, preferences } = req.body;
+
+    // Validate required fields
+    if (!name || !phone || !address || !idType || !idNumber || !preferences) {
+      return res.status(400).send("All fields are required.");
+    }
+
+    const customer = new Customer({
+      name,
+      phone,
+      address,
+      idType,
+      idNumber,
+      preferences,
+    });
+
     await customer.save();
     res.redirect("/customers");
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Error adding customer:", err.message);
+    res.status(500).send("Error adding customer.");
   }
 };
 
@@ -28,30 +45,47 @@ exports.addCustomer = async (req, res) => {
 exports.editCustomerForm = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).send("Customer not found.");
+    }
     res.render("editCustomer", { customer });
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Error fetching customer for editing:", err.message);
+    res.status(500).send("Error loading edit form.");
   }
 };
 
 // Update customer
 exports.updateCustomer = async (req, res) => {
   try {
-    await Customer.findByIdAndUpdate(req.params.id, req.body);
+    const { name, phone, address, idType, idNumber, preferences } = req.body;
+
+    if (!name || !phone || !address || !idType || !idNumber || !preferences) {
+      return res.status(400).send("All fields are required.");
+    }
+
+    await Customer.findByIdAndUpdate(req.params.id, {
+      name,
+      phone,
+      address,
+      idType,
+      idNumber,
+      preferences,
+    });
+
     res.redirect("/customers");
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error("Error updating customer:", err.message);
+    res.status(500).send("Error updating customer.");
   }
 };
 
 // Delete customer
-const Booking = require("../models/Booking");
-
 exports.deleteCustomer = async (req, res) => {
   try {
     const customerId = req.params.id;
 
-    // Check if the customer has active bookings
+    // Check for active bookings
     const activeBookings = await Booking.find({ customerId });
     if (activeBookings.length > 0) {
       return res.status(400).json({
@@ -59,7 +93,6 @@ exports.deleteCustomer = async (req, res) => {
       });
     }
 
-    // Delete the customer
     await Customer.findByIdAndDelete(customerId);
     res.json({ message: "Customer deleted successfully." });
   } catch (err) {
@@ -68,20 +101,20 @@ exports.deleteCustomer = async (req, res) => {
   }
 };
 
-// Search Customers Controller
+// Search customers
 exports.searchCustomers = async (req, res) => {
   try {
-    const query = req.query.q; // Get the search query from the request
+    const query = req.query.q || ""; // Search query
     const customers = await Customer.find({
       $or: [
-        { name: { $regex: query, $options: "i" } }, // Case-insensitive name search
-        { phone: { $regex: query, $options: "i" } }, // Case-insensitive phone search
+        { name: { $regex: query, $options: "i" } }, // Case-insensitive search
+        { phone: { $regex: query, $options: "i" } },
+        { address: { $regex: query, $options: "i" } },
       ],
     });
-
-    res.json(customers); // Respond with the matching customers
+    res.json(customers);
   } catch (err) {
-    console.error("Error searching customers:", err.message); // Log the error
+    console.error("Error searching customers:", err.message);
     res.status(500).json({ error: "Error searching customers." });
   }
 };

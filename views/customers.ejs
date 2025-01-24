@@ -7,12 +7,99 @@
   <body>
     <%- include('partials/header') %>
     <h1>Manage Customers</h1>
+
     <!-- Add Customer Form -->
     <form action="/customers/add" method="POST">
       <input type="text" name="name" placeholder="Name" required />
       <input type="text" name="phone" placeholder="Phone" required />
       <input type="text" name="address" placeholder="Address" required />
+
+      <!-- ID Type and Number -->
+      <select name="idType" required>
+        <option value="">Select ID Type</option>
+        <option value="Passport">Passport</option>
+        <option value="Driver's License">Driver's License</option>
+        <option value="National ID">National ID</option>
+      </select>
       <input type="text" name="idNumber" placeholder="ID Number" required />
+
+      <!-- Preferences -->
+      <fieldset>
+        <legend>Preferences:</legend>
+
+        <!-- Room Type -->
+        <label>
+          <input
+            type="radio"
+            name="preferences[roomType]"
+            value="AC"
+            required
+          />
+          AC
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="preferences[roomType]"
+            value="Non-AC"
+            required
+          />
+          Non-AC
+        </label>
+
+        <br />
+
+        <!-- Bed Type -->
+        <label>
+          <input
+            type="radio"
+            name="preferences[bedType]"
+            value="King Bed"
+            required
+          />
+          King Bed
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="preferences[bedType]"
+            value="Queen Bed"
+            required
+          />
+          Queen Bed
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="preferences[bedType]"
+            value="Double Bed"
+            required
+          />
+          Double Bed
+        </label>
+
+        <br />
+
+        <!-- Smoking -->
+        <label>
+          <input
+            type="radio"
+            name="preferences[smoking]"
+            value="Smoking"
+            required
+          />
+          Smoking
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="preferences[smoking]"
+            value="Non-smoking"
+            required
+          />
+          Non-smoking
+        </label>
+      </fieldset>
       <button type="submit">Add Customer</button>
     </form>
 
@@ -24,7 +111,9 @@
           <th>Name</th>
           <th>Phone</th>
           <th>Address</th>
+          <th>ID Type</th>
           <th>ID Number</th>
+          <th>Preferences</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -34,7 +123,13 @@
           <td><%= customer.name %></td>
           <td><%= customer.phone %></td>
           <td><%= customer.address %></td>
+          <td><%= customer.idType %></td>
           <td><%= customer.idNumber %></td>
+          <td>
+            Room Type: <%= customer.preferences.roomType %>, Bed Type: <%=
+            customer.preferences.bedType %>, Smoking: <%=
+            customer.preferences.smoking %>
+          </td>
           <td>
             <a href="/customers/edit/<%= customer._id %>">Edit</a>
             <form

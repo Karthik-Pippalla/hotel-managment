@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Room</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Include header -->
+    <%- include('partials/header') %>
+
+    <div class="container">
+      <h1 class="page-title">Edit Room</h1>
+      <form action="/rooms/edit/<%= room._id %>" method="POST" class="form">
+        <!-- Room Number -->
+        <div class="form-group">
+          <label for="roomNumber">Room Number:</label>
+          <input
+            type="text"
+            id="roomNumber"
+            name="roomNumber"
+            value="<%= room.roomNumber %>"
+            required
+            class="input-field"
+          />
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value="<%= room.price %>"
+            required
+            class="input-field"
+          />
+        </div>
+
+        <!-- Tags -->
+        <fieldset>
+          <legend>Tags:</legend>
+
+          <!-- Smoking/Non-Smoking Options -->
+          <div class="form-group">
+            <label>
+              <input type="radio" name="smoking" value="Smoking" <%=
+              room.smoking === "Smoking" ? "checked" : "" %> required /> Smoking
+            </label>
+            <label>
+              <input type="radio" name="smoking" value="Non-smoking" <%=
+              room.smoking === "Non-smoking" ? "checked" : "" %> required />
+              Non-smoking
+            </label>
+          </div>
+
+          <!-- AC/Non-AC Options -->
+          <div class="form-group">
+            <label>
+              <input type="radio" name="ac" value="AC" <%= room.ac === "AC" ?
+              "checked" : "" %> required /> AC
+            </label>
+            <label>
+              <input type="radio" name="ac" value="Non-AC" <%= room.ac ===
+              "Non-AC" ? "checked" : "" %> required /> Non-AC
+            </label>
+          </div>
+
+          <!-- Bed Type Options -->
+          <div class="form-group">
+            <label>
+              <input type="radio" name="bed" value="King Bed" <%= room.bed ===
+              "King Bed" ? "checked" : "" %> required /> King Bed
+            </label>
+            <label>
+              <input type="radio" name="bed" value="Queen Bed" <%= room.bed ===
+              "Queen Bed" ? "checked" : "" %> required /> Queen Bed
+            </label>
+            <label>
+              <input type="radio" name="bed" value="Double Bed" <%= room.bed ===
+              "Double Bed" ? "checked" : "" %> required /> Double Bed
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Save Changes Button -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary action-button">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Include footer -->
+    <%- include('partials/footer') %>
+  </body>
+</html>

@@ -7,13 +7,17 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #004d4d, #2c003e),
-    no-repeat center center fixed;
-  background-size: 200% 200%;
-  animation: gradientShift 5s infinite;
+
+  /* Shiny gradient effect with soft transitions */
+  background: linear-gradient(135deg, #102a42, #142e40, #053b56, #0a1e30);
+
+  background-size: 300% 300%;
+  animation: shineEffect 6s infinite;
   color: #fff; /* Adjust font color to contrast the dark background */
 }
-@keyframes gradientShift {
+
+/* Gradient shimmer animation */
+@keyframes shineEffect {
   0% {
     background-position: 0% 50%;
   }
@@ -24,6 +28,7 @@ body {
     background-position: 0% 50%;
   }
 }
+
 .dashboard-footer {
   background-color: #212529; /* Matches the dark theme of your dashboard */
   color: #f8f9fa; /* Light text for contrast */
