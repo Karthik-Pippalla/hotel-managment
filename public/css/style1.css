@@ -1,17 +1,52 @@
 /* General Styling */
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
-  line-height: 1.6;
+  background: linear-gradient(135deg, #004d4d, #2c003e),
+    no-repeat center center fixed;
+  background-size: 200% 200%;
+  animation: gradientShift 5s infinite;
+  color: #fff; /* Adjust font color to contrast the dark background */
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.dashboard-footer {
+  background-color: #212529; /* Matches the dark theme of your dashboard */
+  color: #f8f9fa; /* Light text for contrast */
+  text-align: center; /* Center-align the text */
+  padding: 15px 0; /* Add some padding for better spacing */
+  font-size: 14px; /* Slightly smaller text for the footer */
+  margin-top: auto; /* Add space between the content and the footer */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
+.dashboard-footer a {
+  color: #ffd700; /* Highlight links with gold */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Make the links bold */
+}
+
+.dashboard-footer a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
 header.dashboard-header {
   text-align: center;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #1f1f1f;
+  color: #ffc107;
   padding: 20px 0;
 }
 
@@ -21,7 +56,7 @@ h1 {
 
 .section-title {
   text-align: center;
-  color: #343a40;
+  color: #e0e0e0;
   margin: 20px 0;
 }
 
@@ -29,9 +64,9 @@ h1 {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background: #fff;
+  background: #1f1f1f;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Metrics Section */
@@ -46,33 +81,33 @@ h1 {
   flex: 1;
   min-width: 250px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #292929;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .metric-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
 .metric-card h3 {
   font-size: 18px;
-  color: #555;
+  color: #a0a0a0;
 }
 
 .metric-value {
   font-size: 36px;
   font-weight: bold;
   margin: 10px 0;
-  color: #007bff;
+  color: #03dac5;
 }
 
 .metric-description {
   font-size: 14px;
-  color: #777;
+  color: #888;
 }
 
 /* Manage Links */
@@ -85,8 +120,8 @@ h1 {
 .manage-link {
   display: block;
   padding: 15px 30px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ffc107;
+  color: #121212;
   text-decoration: none;
   border-radius: 5px;
   font-size: 16px;
@@ -95,14 +130,14 @@ h1 {
 }
 
 .manage-link:hover {
-  background-color: #0056b3;
+  background-color: #e0a800;
 }
 
 /* Footer */
 footer.dashboard-footer {
   text-align: center;
   padding: 20px;
-  background-color: #f1f1f1;
+  background-color: #1f1f1f;
   color: #888;
 }
 

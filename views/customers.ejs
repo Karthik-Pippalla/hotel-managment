@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <h1>Manage Customers</h1>
     <%- include('partials/header') %>
+    <h1>Manage Customers</h1>
     <!-- Add Customer Form -->
     <form action="/customers/add" method="POST">
       <input type="text" name="name" placeholder="Name" required />
@@ -49,5 +49,6 @@
         <% }) %>
       </tbody>
     </table>
+    <%- include('partials/footer') %>
   </body>
 </html>
