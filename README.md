@@ -71,19 +71,22 @@ Ensure you have the following installed:
 ## 🖥️ Screenshots
 
 ### 📊 Dashboard
-![Dashboard](![image](https://github.com/user-attachments/assets/07963463-b68d-40c7-8d43-21e8da6604b0)
-)
+
+![Screenshot 2025-01-23 042123](https://github.com/user-attachments/assets/0a805015-afff-484d-b06b-fb9a0fe2a841)
 
 ### 🛏️ Manage Rooms
-![Manage Rooms](![image](https://github.com/user-attachments/assets/59b66f4d-5d93-42bb-b72d-b53aea23d29d)
-)
+
+
+![Screenshot 2025-01-23 042240](https://github.com/user-attachments/assets/4db1da95-d80a-467f-a3a7-76b5ff48a417)
 
 ### 📋 Manage Bookings
-![Manage Bookings](![image](https://github.com/user-attachments/assets/3ad75c68-d4b9-4428-8942-eaf35e57e0cf)
-)
+
+![Screenshot 2025-01-23 042309](https://github.com/user-attachments/assets/45a765c8-2dc9-43c3-82af-bd28787dc878)
+
+
+![Screenshot 2025-01-23 060740](https://github.com/user-attachments/assets/8c6511bb-836b-4a1f-90c2-76cfae85cbf5)
 
 ---
-
 ## 📂 Project Structure
 
 ```
