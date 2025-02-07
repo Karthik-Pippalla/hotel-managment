@@ -1,169 +1,114 @@
-# 🏨 Hotel Management System
+🏨 Hotel Management Admin Dashboard
+📌 Overview
+The Hotel Management Admin Dashboard is a powerful tool designed to streamline hotel operations, from managing rooms and bookings to tracking revenue and customer details. This platform integrates Google Cloud Vision for automated form filling and leverages MongoDB for efficient data storage.
 
-Welcome to the **Hotel Management System**! This is a fully-featured web application for managing hotel bookings, customers, rooms, and revenue. Built with Node.js, Express.js, MongoDB, and EJS for templating, this project provides an intuitive dashboard for managing operations efficiently. 🚀
+✨ Features
+✅ Room Management: Add, update, and delete rooms with ease.
+✅ Customer Management: Store and manage guest details efficiently.
+✅ Bookings Management: Handle reservations, check-ins, and check-outs.
+✅ Google Cloud Vision API: Extract customer data from driver's licenses using OCR (Optical Character Recognition).
+✅ Automated Form Filling: Reduce manual entry with AI-powered document scanning.
+✅ Revenue Tracking: Real-time financial insights into hotel earnings.
+✅ Pagination & Optimization: Handle large-scale data efficiently with optimized queries.
+✅ Secure Authentication: Firebase authentication for user access control.
+✅ Analytics & Trends: Visualize booking trends and occupancy rates.
+✅ Hosted on Firebase: Easily scalable serverless deployment.
 
----
+🛠️ Tech Stack
+Frontend: HTML, CSS, JavaScript, EJS (Embedded JavaScript Templates)
+Backend: Node.js, Express.js
+Database: MongoDB (Mongoose ORM)
+Cloud Services: Google Cloud Vision API (OCR), Firebase Hosting & Functions
+Security: Helmet.js, CORS, Authentication Middleware
+Deployment: Firebase Cloud Functions, Firebase Hosting
+📂 Project Structure
+bash
+Copy
+Edit
+hotel-management-dashboard/
+├── functions/
+│   ├── controllers/         # Business logic for rooms, bookings, customers
+│   ├── models/              # Mongoose schemas for data modeling
+│   ├── routes/              # API routes for various functionalities
+│   ├── views/               # EJS templates for rendering HTML
+│   ├── config/              # Database & environment configurations
+│   ├── public/              # Static assets like CSS, JS, images
+│   ├── index.js             # Main entry point for Firebase Functions
+│   ├── db.js                # MongoDB connection setup
+│   ├── firebase.json        # Firebase configuration
+│   ├── package.json         # Dependencies and scripts
+│   ├── .env                 # Environment variables (DO NOT SHARE)
+│   ├── .gitignore           # Ignored files for Git
+│   ├── README.md            # Project documentation
+└── ...
+🚀 Installation & Setup
+1️⃣ Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/hotel-management-dashboard.git
+cd hotel-management-dashboard
+2️⃣ Install Dependencies
+Navigate to the functions directory:
 
-## 🌟 Features
+bash
+Copy
+Edit
+cd functions
+npm install
+3️⃣ Set Up Environment Variables
+Create a .env file inside functions/ with the following:
 
-- 📋 **Customer Management**: Add, search, and manage customer records seamlessly.
-- 🛏️ **Room Management**: Track available rooms and assign tags for specific facilities.
-- 🕒 **Booking Management**: Make new bookings, handle cancellations, and manage checkouts.
-- 📊 **Revenue Insights**: Real-time revenue tracking for the last 24 hours, week, month, and year.
-- 🎨 **Interactive Dashboard**: A visually appealing and responsive dashboard to oversee operations.
+ini
+Copy
+Edit
+MONGO_URI=mongodb+srv://your_username:your_password@cluster.mongodb.net/hotel_db
+GOOGLE_APPLICATION_CREDENTIALS=./path-to-your-service-account.json
+4️⃣ Run the Server Locally
+bash
+Copy
+Edit
+npm start
+Access the app at http://localhost:5000/admin/dashboard
 
----
-
-## 🛠️ Tech Stack
-
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Frontend**: EJS templates, CSS, JavaScript
-- **Dependencies**:
-  - `mongoose` - MongoDB object modeling
-  - `express` - Web framework
-  - `ejs` - Template engine
-
----
-
-## 🎯 Getting Started
-
-Follow these instructions to get the project up and running on your local machine.
-
-### 🚨 Prerequisites
-
-Ensure you have the following installed:
-- 🐙 [Node.js](https://nodejs.org/)
-- 🐬 [MongoDB](https://www.mongodb.com/try/download/community)
-
-### 📥 Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/hotel-management-system.git
-   cd hotel-management-system
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up your environment variables:
-   - Create a `.env` file in the root directory and add:
-     ```
-     MONGO_URI=mongodb://localhost:27017/hotel
-     PORT=5000
-     ```
-
-4. Seed the database:
-   ```bash
-   node seed.js
-   ```
-
-5. Run the application:
-   ```bash
-   npm start
-   ```
+🌎 Deploying to Firebase
+🔹 Login & Initialize Firebase
+bash
+Copy
+Edit
+firebase login
+firebase init
+Select Firebase Functions: To handle backend logic.
+Select Firebase Hosting: To deploy frontend assets.
+🔹 Deploy the Project
+bash
+Copy
+Edit
+firebase deploy
+Once deployed, access your app at:
+arduino
+Copy
+Edit
+https://your-firebase-project.web.app
+📊 Analytics & Trends
+Real-time Revenue Tracking: Monitor last 24 hours, weekly, monthly, and yearly revenue.
+Booking Trends: Identify peak booking periods.
+Occupancy Rate: Track room utilization.
+Customer Demographics: View customer preferences and booking history.
+🔐 Security & Authentication
+User Authentication: Secure login using Firebase Authentication.
+Role-Based Access Control (RBAC): Grant different privileges to admin and staff.
+CORS & Helmet.js: Prevent security vulnerabilities.
+🔄 Future Enhancements
+🔹 AI Chatbot for Guest Support
+🔹 Automated Invoice Generation
+🔹 SMS & Email Notifications for Bookings
+🔹 Integration with Payment Gateways (Stripe, PayPal, etc.)
+🔹 Loyalty Program for Frequent Guests
 
 
+💡 "Efficiency is doing better what is already being done." - Peter Drucker
+🎯 Built with ❤️ for seamless hotel management.
 
-## 🖥️ Screenshots
+for full advance code like form filling NLP And Computer vision connect my linkedin profile.
 
-### 📊 Dashboard
-
-![Screenshot 2025-01-23 042123](https://github.com/user-attachments/assets/0a805015-afff-484d-b06b-fb9a0fe2a841)
-
-### 🛏️ Manage Rooms
-
-
-![Screenshot 2025-01-23 042240](https://github.com/user-attachments/assets/4db1da95-d80a-467f-a3a7-76b5ff48a417)
-
-### 📋 Manage Bookings
-
-![Screenshot 2025-01-23 042309](https://github.com/user-attachments/assets/45a765c8-2dc9-43c3-82af-bd28787dc878)
-
-
-![Screenshot 2025-01-23 060740](https://github.com/user-attachments/assets/8c6511bb-836b-4a1f-90c2-76cfae85cbf5)
-
----
-## 📂 Project Structure
-
-```
-├── public/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── searchCustomer.js
-├── views/
-│   ├── dashboard.ejs
-│   ├── bookings.ejs
-│   ├── rooms.ejs
-│   ├── customers.ejs
-│   └── partials/
-│       ├── header.ejs
-│       ├── footer.ejs
-├── models/
-│   ├── Booking.js
-│   ├── Customer.js
-│   ├── Room.js
-├── routes/
-│   ├── dashboard.js
-│   ├── bookings.js
-│   ├── rooms.js
-│   ├── customers.js
-├── controllers/
-│   ├── dashboardController.js
-│   ├── bookingController.js
-│   ├── roomController.js
-│   ├── customerController.js
-├── seed.js
-├── app.js
-└── README.md
-```
-
----
-
-## 🧑‍💻 APIs
-
-### 📋 Customer Endpoints
-- **GET** `/customers` - Get all customers.
-- **POST** `/customers/add` - Add a new customer.
-- **GET** `/customers/search?q=name` - Search for a customer.
-
-### 🛏️ Room Endpoints
-- **GET** `/rooms` - Get all rooms.
-- **POST** `/rooms/add` - Add a new room.
-
-### 🕒 Booking Endpoints
-- **GET** `/bookings` - Get all bookings.
-- **POST** `/bookings/add` - Add a new booking.
-- **POST** `/bookings/delete/:id` - Cancel a booking.
-- **POST** `/bookings/checkout/:id` - Mark a booking as checked out.
-
----
-
-## 🌟 Future Enhancements
-
-- 📱 Mobile-friendly UI
-- 🛡️ Role-based authentication
-- 📧 Email notifications for booking confirmation
-- 📅 Calendar view for room availability
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to submit a pull request or open an issue. 🙌
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License. 📄
-
----
-
-## ❤️ Acknowledgments
-
-Special thanks to everyone who contributed and supported this project. 💖
